@@ -1,0 +1,21 @@
+body {
+    margin-left: 20px;
+}
+
+h2, h4{
+    display: inline-block;
+    margin-right: 30px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 40%;
+    height: 40%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid black;
+}
