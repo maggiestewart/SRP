@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>SRP</title>
 </head>
 <body>
@@ -13,9 +14,11 @@
 
     <div id = "srp-info" style="display: flex; justify-content: space-evenly;">
         <div id="left-hand" style="display: flex; flex-direction: column; justify-content: space-evenly;">
-            <div id="input-div">
+            <div id="input-div" >
                 <label for="inputg" style="font-weight: bold;">Input:</label>
                 <input type="text" id="inputg" name="inputg">
+                <br><br>
+                <button id="input-submit" style="width: 225px">Submit</button>
             </div>
             <div id = "grammars">
                 <h3>Grammars</h3>
@@ -206,17 +209,30 @@
                 </tr>
             </table>
         </div>
-        <div id="parsing-steps" style="display: flex; flex-direction: row;">
-            <div id="stack" style="margin-right: 25px;">
-                <h3>Stack</h3>
-            </div>
+        <div id="far-right-side" style="display: flex; flex-direction: column;">
+            <button id="next-step">Next</button>
+            <div id="parsing-steps" style="display: flex; flex-direction: row; margin-right: 10px;">
+                <div id="stack" style="margin-right: 25px;">
+                    <h3>Stack</h3>
+                    <p id="stack-steps">
 
-            <div id="input-string" style="margin-right: 25px;">
-                <h3>Input</h3>
-            </div>
+                    </p>
 
-            <div id="action" style="margin-right: 25px;">
-                <h3>Action</h3>
+                </div>
+
+                <div id="input-string" style="margin-right: 25px;">
+                    <h3>Input</h3>
+                    <p id="input-steps">
+
+                    </p>
+                </div>
+
+                <div id="action" style="margin-right: 25px;">
+                    <h3>Action</h3>
+                    <p id="action-steps">
+
+                    </p>
+                </div>
             </div>
         </div>
     </div>
