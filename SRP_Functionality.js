@@ -27,6 +27,7 @@ function insertInput(table, rowNum, inputString){
 
 //insert for action values
 function insertAction(table, rowNum, actionString){
+    console.log(rowNum);
     const row = table.insertRow(rowNum);
     const action = row.insertCell(0);
     action.innerHTML = translate(compareStackInput());

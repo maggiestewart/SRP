@@ -17,7 +17,7 @@ submit.addEventListener("click",function() {
         //     // inputField.value = "";
         // }
     } else {
-        console.log("Already initialized");
+        console.log("Already initialized (count: " + submitCount + ")");
         const errors = document.getElementById("error-msg");
         errors.innerHTML = ("Already initialized");
     }
@@ -29,10 +29,11 @@ next.addEventListener("click", function() {
     // } else {
     //     console.log("FINISHED!!");
     // }
-
+    console.log("Next count before: " + nextCount);
     insertStack(stackTable, nextCount, 3);
     insertInput(inputTable, nextCount, 4);
     insertAction(actionTable, nextCount, 5);
     nextCount++;
+    console.log("Next count after: " + nextCount);
 
 });

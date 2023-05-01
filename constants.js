@@ -13,4 +13,4 @@ let nextCount = 2;
 
 
 let stackVal = "0";
-// let inputVals = inputField.value.split(" ");
+let inputVals = inputField.value.split(" ");
