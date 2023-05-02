@@ -31,6 +31,13 @@ function insertAction(table, actionString){
     console.log("ACT: " + actionString);
     actionCell.innerHTML = actionString;
 }
+/*
+function list(){
+    for (let i = 0; i < inputVals.length;i++){
+        console.log("Input element " + i + ": " + inputVals[i]);
+    }
+}
+*/
 
 function compareStackInput(stackEndValue, inputFirstValue){
     let row, col, ret;
@@ -107,6 +114,7 @@ function compareStackInput(stackEndValue, inputFirstValue){
     //console.log("CV: " + table.rows[3].cells[0].textContent);
     console.log("CV: " + cellValue);
     ret = cellValue;
+    //list();
 
     return translate(ret);
 
@@ -116,14 +124,19 @@ function translate(expression){
     let statement;
     let first = expression.charAt(0);
     let length = expression.length;
+
     if (first == "S"){
         statement = "Shift " + expression.substring(length-1, length);
     } else if (first == "R"){
         statement = "Reduce " + expression.substring(1, length);
-    } else if (expression == "accept"){
+    } else if (Number.isInteger(first)) {
+        statement = "Change state " + first;
+    }else if (expression == "accept"){
         statement = "Accept ";
+    } else if (expression == ""){
+        statement = "Syntax Error";
+        console.log("SYNTAX ERROR!!");
     }
-
     return statement;
 
 }

@@ -44,27 +44,35 @@ submit.addEventListener("click",function() {
 });
 
 next.addEventListener("click", function() {
-    let done = false;
-    if (submitCount == 1 && !done){
-        console.log("Next count before: " + nextCount);
-        insertStack(stackTable, stackVal);
-        insertInput(inputTable, inputFieldVal);
-        // let first = st.substring(st.length-1,st.length);
-        // let second = inp.substring()
-        insertAction(actionTable, compareStackInput("0","("));
-        nextCount++;
-        console.log("Next count after: " + nextCount);
+    let cellValue = document.getElementById("input-parsing").rows[nextCount-1].cells[0].textContent;
+    let temp = inputVals.shift();
+    stackVal = stackVal + temp;
+    if (submitCount == 1){
+        if(cellValue != "$") {
 
-        /* const action = document.getElementById("action-parsing");
-        var x = (action.rows.length)-1;
-        var y = x.getElementsByTagName("td");
+            console.log("Next count before: " + nextCount);
+            console.log(temp);
+            if (temp.value == " ") {
+                inputVals.shift();
+                console.log(5555);
+            } else {
+                insertStack(stackTable, stackVal);
+                insertInput(inputTable, inputVals.join(""));
+                // let first = st.substring(st.length-1,st.length);
+                // let second = inp.substring()
+                //console.log(stackVal.substring(length-1,length));
+                console.log("INP: " + temp);
+                console.log(stackVal[length]);
+                insertAction(actionTable, compareStackInput(stackVal[length], temp));
+                nextCount++;
+                console.log("Next count after: " + nextCount);
 
-        for (let i = 0; i < x; i++) {
-            console.log("LENGTH: " + x + "VAL: " + i);
-            if(action.rows[i].value == "accept"){
-                done = true;
             }
-        } */
+        } else{
+            console.log("DONE!");
+            const errors = document.getElementById("error-msg");
+            errors.innerHTML = "DONE!!";
+        }
     } else {
         console.log("Not yet initialized: Initialize table by typing in input and clicking submit");
         const errors = document.getElementById("error-msg");

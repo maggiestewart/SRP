@@ -12,5 +12,5 @@ let submitCount = 0;
 let nextCount = 1;
 
 
-let stackVal = "0";
+let stackVal = [0];
 let inputVals = inputField.value.split(" ");
