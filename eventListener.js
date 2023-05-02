@@ -1,49 +1,29 @@
 // initialize the input to the user inputted String and stack to 0
 submit.addEventListener("click",function() {
     if (submitCount == 0) {
-        console.log(inputFieldVal.length);
-        // if (inputFieldVal.length > 0) {
+        if (inputFieldVal.length > 0) {
+            console.log("LENGTH: " + inputFieldVal.length);
+            console.log(nextCount);
+            insertStack(stackTable, 0);
+            insertInput(inputTable, inputFieldVal);
+            insertAction(actionTable, translate(compareStackInput(stackVal, inputVals[0])));
+            submitCount++;
+            nextCount++;
+        } else {
+            console.log("Empty input value");
+            errors.innerHTML = ("Empty input value");
 
-        console.log(nextCount);
-        //     if (inputFieldVal.substring(inputFieldVal.length-1, inputFieldVal.length) == "$") {
-                console.log("Last element: " + inputFieldVal.substring(inputFieldVal.length - 1, inputFieldVal.length));
-                insertStack(stackTable, 0);
-                insertInput(inputTable, inputFieldVal);
-                insertAction(actionTable, translate(compareStackInput(stackVal, inputVals[0])));
-                submitCount++;
-                nextCount++;
-            // } else {
-            //     console.log("Didn't include $ at the end of input string");
-            //     console.log(inputFieldVal.substring(inputFieldVal.length - 1, inputFieldVal.length));
-            //
-            //     const errors = document.getElementById("error-msg");
-            //     errors.innerHTML = ("Didn't include $ at the end of input string");
-            //
-            //     inputFieldVal = " ";
-            // }
-        // } else {
-    //         console.log("Empty input");
-    //         const errors = document.getElementById("error-msg");
-    //         errors.innerHTML = ("Empty input");
-    //     }
-        // } else {
-        //     console.log("Didn't include $ at the end of input string");
-        //     console.log(inputField.value.substring(inputFieldVal.length-1, inputFieldVal.length));
-        //
-        //     const errors = document.getElementById("error-msg");
-        //     errors.innerHTML = ("Didn't include $ at the end of input string");
-        //
-        //     // inputField.value = "";
-        // }
+            window.location.reload();
+        }
     } else {
         console.log("Already initialized");
-        const errors = document.getElementById("error-msg");
         errors.innerHTML = ("Already initialized");
-
     }
 });
 
 next.addEventListener("click", function() {
+    // const table = document.getElementById("parsing-steps");
+    // table.style.backgroundColor = "white";
     let cellValue = document.getElementById("input-parsing").rows[nextCount-1].cells[0].textContent;
     let temp = inputVals.shift();
     stackVal = stackVal + temp;
