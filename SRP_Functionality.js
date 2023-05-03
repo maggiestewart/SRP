@@ -6,7 +6,7 @@ function list(){
 }
 */
 
-function compareStackInput(stackEndValue, inputFirstValue){
+function findTableValue(stackEndValue, inputFirstValue){
     let row, col, ret;
     switch (stackEndValue) {     //determine row
         case 0:  row = 2;  break;
@@ -41,32 +41,45 @@ function compareStackInput(stackEndValue, inputFirstValue){
     let cellValue = table.rows[row].cells[col].textContent;
     let cell = table.rows[row].cells[col];
     cell.style.backgroundColor = "yellow";
-    //console.log("CV: " + table.rows[3].cells[0].textContent);
     console.log("CV: " + cellValue);
     ret = cellValue;
     //list();
 
-    return translate(ret);
-
+    return ret;
 }
 
 function translate(expression){
     let statement;
     let first = expression.charAt(0);
     let length = expression.length;
+    let num;
 
     if (first == "S"){
-        statement = "Shift " + expression.substring(length-1, length);
+        num = expression.substring(length-1, length);
+        statement = "Shift " + num;
     } else if (first == "R"){
-        statement = "Reduce " + expression.substring(1, length);
+        num = expression.substring(1, length);
+        statement = "Reduce " + num;
     } else if (Number.isInteger(first)) {
         statement = "Change state " + first;
     }else if (expression == "accept"){
-        statement = "Accept ";
+        statement = "Accept";
     } else if (expression == ""){
         statement = "Syntax Error";
         console.log("SYNTAX ERROR!!");
     }
-    return statement;
+    return {num, statement};
+
+}
+
+function shift(){
+
+}
+
+function reduce(){
+
+}
+
+function goTo(){
 
 }

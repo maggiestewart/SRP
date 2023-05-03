@@ -6,13 +6,13 @@ submit.addEventListener("click",function() {
             console.log(nextCount);
             insertStack(stackTable, 0);
             insertInput(inputTable, inputFieldVal);
-            insertAction(actionTable, translate(compareStackInput(stackVal, inputVals[0])));
+            let t = translate(findTableValue(stackVal, inputVals[0]));
+            insertAction(actionTable, t.statement);
             submitCount++;
             nextCount++;
         } else {
             console.log("Empty input value");
             errors.innerHTML = ("Empty input value");
-
             window.location.reload();
         }
     } else {
@@ -21,6 +21,7 @@ submit.addEventListener("click",function() {
     }
 });
 
+// go through each step of the shift reduce parser
 next.addEventListener("click", function() {
     // const table = document.getElementById("parsing-steps");
     // table.style.backgroundColor = "white";
@@ -29,26 +30,27 @@ next.addEventListener("click", function() {
     stackVal = stackVal + temp;
     if (submitCount == 1){
         if(cellValue != "$") {
+            let t = translate(findTableValue(stackVal[length], temp));
+            if (t.statement.substring(0,1) == "S") { // shift!!
 
-            console.log("Next count before: " + nextCount);
-            console.log(temp);
-            if (temp.value == " ") {
-                inputVals.shift();
-                console.log(5555);
-            } else {
-                insertStack(stackTable, stackVal);
+                console.log("Next count before: " + nextCount);
+                console.log(temp);
+
                 insertInput(inputTable, inputVals.join(""));
-                // let first = st.substring(st.length-1,st.length);
-                // let second = inp.substring()
-                //console.log(stackVal.substring(length-1,length));
+
                 console.log("INP: " + temp);
                 console.log(stackVal[length]);
-                insertAction(actionTable, compareStackInput(stackVal[length], temp));
-                nextCount++;
-                console.log("Next count after: " + nextCount);
 
+                insertAction(actionTable, t.statement);
+                stackVal = stackVal + t.num;
+                insertStack(stackTable, stackVal);
+            } else if (t.statement.substring(0,1) == "R") { // reduce!!
+                // account for go to in this case
+                console.log("YESSSSS");
             }
-        } else{
+            nextCount++;
+            console.log("Next count after: " + nextCount);
+        } else {
             console.log("DONE!");
             const errors = document.getElementById("error-msg");
             errors.innerHTML = "DONE!!";

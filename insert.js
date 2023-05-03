@@ -7,7 +7,7 @@ function insertInitial(table, first, second){
     const action = row.insertCell(0);
     stack.innerHTML = first;
     input.innerHTML = second;
-    action.innerHTML = compareStackInput(first, second.charAt(0));
+    action.innerHTML = translate(findTableValue(first, second.charAt(0)));
 }
 
 //insert for stack values
