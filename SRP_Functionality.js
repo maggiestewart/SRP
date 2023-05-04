@@ -14,6 +14,15 @@ function listS(){
 
 function findTableValue(stackEndValue, inputFirstValue){
     let row, col, ret;
+
+    for (let r = 2; r <= 13; r++){
+        for (let c = 1; c <= 9; c++){
+            let t = document.getElementById("table-info");
+            let cell = t.rows[r].cells[c];
+            cell.style.backgroundColor = "white";
+        }
+    }
+
     switch (stackEndValue) {     //determine row
         case "0":  row = 2;  break;
         case "1":  row = 3;  break;
@@ -61,8 +70,13 @@ function translate(expression){
     let num;
 
     if (first == "S"){
-        num = expression.substring(length-1, length);
-        statement = "Shift " + num;
+        if (expression.length == 2) {
+            num = expression.substring(length - 1, length);
+            statement = "Shift " + num;
+        } else {
+            num = expression.substring(length - 2, length);
+            statement = "Shift " + num;
+        }
     } else if (first == "R"){
         num = expression.substring(1, length);
         statement = "Reduce " + num;
@@ -71,8 +85,6 @@ function translate(expression){
     } else if (expression == ""){
         statement = "Syntax Error";
         console.log("SYNTAX ERROR!!");
-    } else {
-        statement = "Change state " + first;
     }
     return {num, statement};
 
@@ -103,4 +115,17 @@ function goTo(valBefore, endVal){
         case "7": ret = findTableValue(valBefore, endVal); break;
     }
     return ret;
+}
+
+function reduce13(r, a, inp){
+    let start = a;
+    stackVal = stackVal.slice(0, start);
+    stackVal[start] = r.grammarToL;
+    let valBefore = stackVal[start-1];
+    console.log("VB: " + valBefore);
+
+    stackVal[start + 1] = goTo(valBefore, stackVal[start]);
+
+    insertInput(inputTable, inp);
+    insertStack(stackTable, stackVal.join(""));
 }
